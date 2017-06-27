@@ -1,0 +1,150 @@
+﻿<section>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Course Search</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Course Lookup</strong></div>
+                <div class="col-sm-6 col-lg-3">
+                    <input type="text" ng-model="SelectedGolfCourse" placeholder="Golf Course ID or Name" typeahead="course as course.DisplayName for course in getGolfCourses($viewValue)" typeahead-loading="loadingGolfCourses" class="form-control">                    
+                </div>
+                <div class="col-sm-6 col-lg-3"></div>
+                <div class="col-sm-6 col-lg-3"></div>
+                </div>
+            </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search Criteria</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Reservation ID</strong></div>
+                <div class="col-sm-6 col-lg-3">
+                    <input type="text" class="form-control" ng-model="Criteria.ReservationId" />
+                </div>
+                <div class="col-sm-6 col-lg-3"><strong>Email Address</strong></div>
+                <div class="col-sm-6 col-lg-3"><input type="email" class="form-control" ng-model="Criteria.EmailAddress" /></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Course</strong></div>
+                <div class="col-sm-6 col-lg-3"><strong>{{ SelectedGolfCourse.Name  || "--Not Specified--"}}</strong></div>
+                <div class="col-sm-6 col-lg-3"><strong ng-show="SelectedGolfCourse.Name">Rate Set</strong></div>
+                <div class="col-sm-6 col-lg-3">
+                    <select ng-show="SelectedGolfCourse.Name" ng-model="SelectedRateSet" ng-options="rateSet as rateSet.Name for rateSet in rateSets"></select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Tee Time ID</strong></div>
+                <div class="col-sm-6 col-lg-3">
+                    <input type="text" class="form-control" ng-model="Criteria.TeeTimeId" />
+                </div>
+                <div class="col-sm-6 col-lg-3"><strong>Confirmation #</strong></div>
+                <div class="col-sm-6 col-lg-3">
+                    <input type="text" class="form-control" ng-model="Criteria.ConfirmationNumber" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Reservation Created Between</strong></div>
+                <div class="col-sm-6 col-lg-3">
+                    <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup="{{ReservationStartDateViewModel.format}}" ng-model="Criteria.ReservationStartDate" is-open="ReservationStartDateViewModel.opened" datepicker-options="ReservationStartDateViewModel.dateOptions" date-disabled="ReservationStartDateViewModel.disabled(date, mode)" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary" ng-click="ReservationStartDateViewModel.open($event)"><i class="fa fa-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+                <div class="col-sm-6 col-lg-3"><strong>And</strong></div>
+                <div class="col-sm-6 col-lg-3">
+                    <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup="{{ReservationEndDateViewModel.format}}" ng-model="Criteria.ReservationEndDate" is-open="ReservationEndDateViewModel.opened" datepicker-options="ReservationEndDateViewModel.dateOptions" date-disabled="ReservationEndDateViewModel.disabled(date, mode)" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary" ng-click="ReservationEndDateViewModel.open($event)"><i class="fa fa-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Tee Time Dates Between</strong></div>
+                <div class="col-sm-6 col-lg-3">
+                    <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup="{{TeeTimeStartDateViewModel.format}}" ng-model="Criteria.TeeTimeStartDate" is-open="TeeTimeStartDateViewModel.opened" datepicker-options="TeeTimeStartDateViewModel.dateOptions" date-disabled="TeeTimeStartDateViewModel.disabled(date, mode)" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary" ng-click="TeeTimeStartDateViewModel.open($event)"><i class="fa fa-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+                <div class="col-sm-6 col-lg-3"><strong>And</strong></div>
+                <div class="col-sm-6 col-lg-3">
+                    <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup="{{TeeTimeEndDateViewModel.format}}" ng-model="Criteria.TeeTimeEndDate" is-open="TeeTimeEndDateViewModel.opened" datepicker-options="TeeTimeEndDateViewModel.dateOptions" date-disabled="TeeTimeEndDateViewModel.disabled(date, mode)" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary" ng-click="TeeTimeEndDateViewModel.open($event)"><i class="fa fa-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <button class="btn btn-primary" style="margin-bottom:20px;margin-left:20px" ng-click="searchReservations()">Search</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3"><i class="fa fa-list fa-5x"></i></div>
+                <div class="col-xs-9 text-right">
+                    <div>
+                        <div class="huge">{{ reservations.length }}</div>
+                        <div ng-hide="!(reservations.length >= 0)">reservation(s) returned!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+
+            <div ng-hide="reservations.length">Nothing to show.</div>
+
+            <table ng-hide="!reservations.length" class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Facility</th>
+                        <th>Course</th>
+                        <th>Group</th>
+                        <th># of Players</th>
+                        <th>Status</th>
+                        <th>Created On</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in reservations">
+                        <td>{{ item.Reservation.ReservationId }}</td>
+                        <td>{{ item.GolfCourse.Name }}</td>
+                        <td>{{ item.RateSet.Name }}</td>
+                        <td>{{ item.Reservation.GroupName }}</td>
+                        <td>{{ item.Reservation.NumberOfPlayers }}</td>
+                        <td>{{ item.Reservation.ReservationStatus }}</td>
+                        <td>{{ item.Reservation.CreateDate.toUTCString() }}</td>
+                        <td><button class="btn btn-primary" ng-click="viewReservation(item)">View</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>

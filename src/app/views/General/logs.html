@@ -1,0 +1,57 @@
+﻿
+<section>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search Criteria</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Email Address</strong></div>
+                <div class="col-sm-6 col-lg-3">
+                    <input type="email" class="form-control" ng-model="Criteria.EmailAddress" /></div>
+                <div class="col-sm-6 col-lg-3"><strong>Max Returned Logs</strong></div>
+                <div class="col-sm-6 col-lg-3">
+                    <select ng-model="Criteria.LogsToReturn" ng-options="item as item for item in MaxToReturn"></select></div>
+            </div>
+            <button class="btn btn-primary" ng-click="searchErrorLogs()">Search</button>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3"><i class="fa fa-list fa-5x"></i></div>
+                <div class="col-xs-9 text-right">
+                    <div>
+                        <div class="huge">{{ logs.length }}</div>
+                        <div ng-hide="!(logs.length >= 0)">log(s) returned!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+
+            <div ng-hide="logs.length">Nothing to show.</div>
+
+            <table ng-hide="!logs.length" class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Source</th>
+                        <th>Created</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="log in logs">
+                        <td>{{ log.Id }}</td>
+                        <td>{{ log.Source }}</td>
+                        <td>{{ log.CreateDateTime.toUTCString() }}</td>
+                        <td>{{ log.Message }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>

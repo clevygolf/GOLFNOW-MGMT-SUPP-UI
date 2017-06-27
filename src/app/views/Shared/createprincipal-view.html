@@ -1,0 +1,42 @@
+﻿<form name="createprincipalform">
+<div class="modal-header">
+    <h3 class="modal-title">Create Application Principal</h3>
+</div>
+<div class="modal-body">
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Credentials</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Application Name</strong></div>
+                <div class="col-sm-6 col-lg-3"><input class="form-control" name="applicationname" placeholder="(ex GolfNow API 2.1)" ng-model="item.ApplicationName" required /></div>
+                <div class="col-sm-6 col-lg-3"><strong>Login Name</strong></div>
+                <div class="col-sm-6 col-lg-3"><input class="form-control" name="loginname" placeholder="(ex GolfNowApi21App)" ng-model="item.LoginName" required /></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Password</strong>
+                </div>
+                <div class="col-sm-6 col-lg-3"><input type="password" class="form-control" name="password" ng-model="item.Password"/>
+                </div>
+                <div class="col-sm-6 col-lg-3"><strong>Confirm Password</strong>
+                </div>
+                <div class="col-sm-6 col-lg-3"><input type="password" class="form-control" name="confirmpassword" ng-model="item.ConfirmPassword"/>
+                </div>
+            </div>
+
+            <div class="text-warning" ng-show="createprincipalform.applicationname.$dirty && createprincipalform.applicationname.$error.required">An application name is required</div>
+            <div class="text-warning" ng-show="createprincipalform.loginname.$dirty && createprincipalform.loginname.$error.required">A login name is required</div>
+            <div class="text-warning" ng-show="item.Password != item.ConfirmPassword">The confirmation password does not match the original</div>
+
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-disabled="item.ApplicationName.length == 0 || item.LoginName.length == 0 || item.Password != item.ConfirmPassword" ng-click="item.Accept(Accept)">Create</button>
+</div>
+</form>

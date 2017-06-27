@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="SupportApp" ng-controller="indexController">
+<head>
+    <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible" />
+    <title>GolfNow Support</title>
+
+    <!-- start: Meta -->
+    <meta charset="utf-8">
+    <title>GolfNow Management - Support Dashboard</title>
+    <meta name="description" content="GolfNow Support Dashboard">
+    <!-- end: Meta -->
+    <!-- start: CSS -->
+    <link type="text/css" rel="stylesheet" href="content/jquery-ui-1.10.4.custom.min.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="content/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="content/animate.css">
+    <link type="text/css" rel="stylesheet" href="content/all.css">
+    <link type="text/css" rel="stylesheet" href="content/main.css">
+    <link type="text/css" rel="stylesheet" href="content/style-responsive.css">
+    <link type="text/css" rel="stylesheet" href="content/zabuto_calendar.min.css">
+    <link type="text/css" rel="stylesheet" href="content/pace.css">
+    <link type="text/css" rel="stylesheet" href="content/angular-chart.css"/>
+    <link type="text/css" rel="stylesheet" href="content/angular-json-human.css"/>
+    <!--<link type="text/css" rel="stylesheet" href="content/jquery.news-ticker.css">-->
+    <!-- end: CSS -->
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <link id="ie-style" href="content/ie.css" rel="stylesheet">
+    <![endif]-->
+    <!--[if IE 9]>
+        <link id="ie9style" href="content/ie9.css" rel="stylesheet">
+    <![endif]-->
+    <!-- start: Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- end: Favicon -->
+
+    <link href="content/loading-bar.min.css" rel="stylesheet" />
+    <link href="content/site.css" rel="stylesheet" type="text/css" />
+    <link href="content/toastr.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+</head>
+<body>
+
+    <!--BEGIN TOPBAR-->
+    <div id="header-topbar-option-demo" class="page-header-topbar">
+        <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                <a id="logo" href="/" class="navbar-brand"><span class="fa fa-rocket"></span>GolfNow Support</a>
+            </div>
+            <div class="topbar-main">
+                <!--<a id="menu-toggle" class="hidden-xs"><i class="fa fa-bars"></i></a>-->
+
+                <ul class="nav navbar navbar-top-links navbar-right mbn pull-right" ng-show="profile.isAuthorized">
+                    <li class="dropdown topbar-user">
+                        <a data-hover="dropdown" class="dropdown-toggle"><i class="fa fa-user"></i>&nbsp;<span class="hidden-xs">{{profile.userName}}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!--END TOPBAR-->
+    <div id="wrapper">
+        <!--BEGIN SIDEBAR MENU-->
+        <nav id="sidebar" role="navigation" data-step="2"
+             data-position="right" class="navbar-default navbar-static-side" ng-show="profile.isAuthorized">
+            <div class="sidebar-collapse in menu-scroll">
+                <ul id="side-menu" class="nav">
+
+                    <div class="clearfix"></div>
+
+                    <li>
+                        <a href="#/login">
+                            <i class="fa fa-key fa-fw">
+                                <div class="icon-bg bg-orange"></div>
+                            </i><span class="menu-title">Log Out</span>
+                        </a>
+                    </li>
+
+                    <li class="active">
+                        <a>
+                            <span class="menu-title">Customer</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/#/customer/app">
+                            <i class="fa fa-list-ol fa-fw">
+                                <div class="icon-bg bg-pink"></div>
+                            </i><span class="menu-title">App Subscriptions</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="/#/customer/correspondence">
+                            <i class="fa fa-list-alt fa-fw">
+                                <div class="icon-bg bg-green"></div>
+                            </i><span class="menu-title">Correspondence</span>
+                        </a>
+
+                    </li>
+
+                    <li class="active">
+                        <a>
+                            <span class="menu-title">Operations</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/#/ops/affiliate/endpoint">
+                            <i class="fa fa-list fa-fw">
+                                <div class="icon-bg bg-violet"></div>
+                            </i><span class="menu-title">Affiliate Endpoints</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="/#/ops/internal/principals">
+                            <i class="fa fa-user-secret fa-fw">
+                                <div class="icon-bg bg-blue"></div>
+                            </i><span class="menu-title">Application Principals</span>
+                        </a>
+
+                    </li>
+
+                    <li class="active">
+                        <a>
+                            <span class="menu-title">Golf Courses</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/#/course/search">
+                            <i class="fa fa-search fa-fw">
+                                <div class="icon-bg bg-red"></div>
+                            </i><span class="menu-title">Search Courses</span>
+                        </a>
+
+                    </li>
+
+                    <li class="active">
+                        <a>
+                            <span class="menu-title">Reservations</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/#/reservation/search">
+                            <i class="fa fa-search fa-fw">
+                                <div class="icon-bg bg-yellow"></div>
+                            </i><span class="menu-title">Search Reservations</span>
+                        </a>
+
+                    </li>
+
+                    <li class="active">
+                        <a>
+                            <span class="menu-title">Logging</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/#/general/logs/crm">
+                            <i class="fa fa-bug fa-fw">
+                                <div class="icon-bg bg-grey"></div>
+                            </i><span class="menu-title">CRM Logs</span>
+                        </a>
+
+                    </li>
+
+                    <li>
+                        <a href="/#/general/logs/apps">
+                            <i class="fa fa-book fa-fw">
+                                <div class="icon-bg bg-grey"></div>
+                            </i><span class="menu-title">App Logs</span>
+                        </a>
+
+                    </li>
+
+                    <li>
+                        <a href="/#/general/interface">
+                            <i class="fa fa-area-chart fa-fw">
+                                <div class="icon-bg bg-grey"></div>
+                            </i><span class="menu-title">Interface Errors</span>
+                        </a>
+
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+        <!--END SIDEBAR MENU-->
+        <!--BEGIN PAGE WRAPPER-->
+        <div class="page-wrapper">
+            <!--BEGIN TITLE & BREADCRUMB PAGE-->
+        <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+            <div class="page-header pull-left">
+                <div class="page-title">
+                    {{description.name}}
+                </div>
+            </div>
+            <ol class="breadcrumb page-breadcrumb pull-right">
+                <li><i class="fa fa-home"></i>&nbsp;<a href="dashboard.html">{{description.area}}</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                <li class="hidden"><a href="#">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                <li class="active">{{description.name}}</li>
+            </ol>
+            <div class="clearfix">
+            </div>
+        </div>
+            <!--END TITLE & BREADCRUMB PAGE-->
+        <!--BEGIN CONTENT-->
+            <div class="page-content">
+                <div ng-view class="view-animation"></div>
+            </div>
+        </div>
+    <!--END CONTENT-->
+        </div>
+            <!-- 3rd party libraries -->
+            <script src="scripts/jquery-1.10.2.min.js"></script>
+            <script src="scripts/jquery-migrate-1.2.1.min.js"></script>
+            <script src="scripts/jquery-ui.js"></script>
+            <script src="scripts/bootstrap.min.js"></script>
+            <script src="scripts/bootstrap-hover-dropdown.js"></script>
+            <!--CORE JAVASCRIPT-->
+            <!--<script src="scripts/main.js"></script>-->
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.1/angular.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.1/angular-route.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.1/angular-sanitize.js"></script>
+            <script src="scripts/Chart.js"></script>
+            <script src="scripts/angular-chart.min.js"></script>
+            <script src="scripts/angular-local-storage.min.js"></script>
+            <script src="scripts/loading-bar.min.js"></script>
+            <script src="scripts/angular-ui/ui-bootstrap.min.js"></script>
+            <script src="scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+            <script src="scripts/lodash.min.js"></script>
+            <script src="scripts/angular-google-maps.min.js"></script>
+            <script src="scripts/toastr.min.js"></script>
+            <script src="scripts/angular-json-human.js"></script>
+            <!-- Load app main script -->
+            <script src="app/app.js"></script>
+            <script src="app/config.js"></script>
+            <!-- Load factories -->
+            <script src="app/factories/notify.js"></script>
+            <!-- Load directives -->
+            <script src="app/directives/queryBuilder.js"></script>
+            <!-- Load services -->
+            <script src="app/services/authenticationInterceptorService.js"></script>
+            <script src="app/services/authenticationService.js"></script>
+            <script src="app/services/accountService.js"></script>
+            <script src="app/services/customerService.js"></script>
+            <script src="app/services/courseService.js"></script>
+            <script src="app/services/logService.js"></script>
+            <script src="app/services/operationsService.js"></script>
+            <script src="app/services/principalService.js"></script>
+            <script src="app/services/reservationService.js"></script>
+            <script src="app/services/affiliateService.js"></script>
+            <script src="app/services/analyticsService.js"></script>
+            <!-- Load controllers -->
+            <script src="app/controllers/indexController.js"></script>
+            <script src="app/controllers/modalController.js"></script>
+            <script src="app/controllers/profileController.js"></script>
+            <script src="app/controllers/dashboardController.js"></script>
+            <script src="app/controllers/loginController.js"></script>
+            <script src="app/controllers/customerAppSearchController.js"></script>
+            <script src="app/controllers/customerEmailSearchController.js"></script>
+            <script src="app/controllers/logsCrmController.js"></script>
+            <script src="app/controllers/affiliateEndPointController.js"></script>
+            <script src="app/controllers/applicationPrincipalsController.js"></script>
+            <script src="app/controllers/courseSearchController.js"></script>
+            <script src="app/controllers/courseViewController.js"></script>
+            <script src="app/controllers/reservationSearchController.js"></script>
+            <script src="app/controllers/appLogsController.js"></script>
+            <script src="app/controllers/interfaceErrorController.js"></script>
+            <!-- Load view models -->
+            <script src="app/viewmodels/datePickerViewModel.js"></script>
+            <script src="app/viewmodels/searchReservationsCriteriaViewModel.js"></script>
+            <script src="app/viewmodels/searchErrorLogsCriterialViewModel.js"></script>
+            <script src="app/viewmodels/modalViewModel.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">Reservation Summary View</h3>
+</div>
+<div class="modal-body">
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Course Information</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Course Id</strong></div>
+                <div class="col-sm-6 col-lg-3">{{item.GolfCourse.GolfCourseId}}</div>
+                <div class="col-sm-6 col-lg-3"><strong>Course Name</strong></div>
+                <div class="col-sm-6 col-lg-3">{{item.GolfCourse.Name}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Rate Set Id</strong></div>
+                <div class="col-sm-6 col-lg-3">{{item.RateSet.RateSetId}}</div>
+                <div class="col-sm-6 col-lg-3"><strong>Rate Set Name</strong></div>
+                <div class="col-sm-6 col-lg-3">{{item.RateSet.Name}}</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Customer Information</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Name</strong></div>
+                <div class="col-sm-6 col-lg-3">{{item.Customer.LastName}}, {{item.Customer.FirstName}}</div>
+                <div class="col-sm-6 col-lg-3"><strong>Email Address</strong></div>
+                <div class="col-sm-6 col-lg-3" style="word-wrap: break-word;">{{item.Customer.EmailAddress}}</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Tee Time Information</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Tee Time Id</strong></div>
+                <div class="col-sm-6 col-lg-3">{{item.TeeTime.TeeTimeId}}</div>
+                <div class="col-sm-6 col-lg-3"><strong>Play Date</strong></div>
+                <div class="col-sm-6 col-lg-3">{{item.TeeTime.TeeTime.toLocaleString()}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Tee Time Override?</strong></div>
+                <div class="col-sm-6 col-lg-3">{{item.TeeTime.TeeTimeOverride}}</div>
+                <div class="col-sm-6 col-lg-3"></div>
+                <div class="col-sm-6 col-lg-3"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Reservation Information - {{ item.Reservation.ReservationId }}</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Tee Sheet Confirmation #</strong></div>
+                <div class="col-sm-6 col-lg-3">{{item.Reservation.ConfirmationNumber}}</div>
+                <div class="col-sm-6 col-lg-3"></div>
+                <div class="col-sm-6 col-lg-3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong># of Players</strong></div>
+                <div class="col-sm-6 col-lg-3">{{item.Reservation.NumberOfPlayers}}</div>
+                <div class="col-sm-6 col-lg-3"><strong>Status</strong></div>
+                <div class="col-sm-6 col-lg-3">{{item.Reservation.ReservationStatus}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3"><strong>Group Name</strong></div>
+                <div class="col-sm-6 col-lg-3">{{item.Reservation.GroupName}}</div>
+                <div class="col-sm-6 col-lg-3"><strong>Booking Source</strong></div>
+                <div class="col-sm-6 col-lg-3">{{item.Reservation.BookingSource}}</div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="Accept()">OK</button>
+</div>
+
+

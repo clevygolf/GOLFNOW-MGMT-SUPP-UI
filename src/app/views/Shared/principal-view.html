@@ -1,0 +1,41 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">Application Principal Overview</h3>
+</div>
+<div class="modal-body">
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">"{{item.ApplicationName}}" Permissions</h3>
+        </div>
+        <div class="panel-body">
+
+            <tabset justified="true">
+                <tab ng-repeat="domain in item.domains" heading="{{domain.Domain}}">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Granted Access?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="Permission in domain.Permissions">
+                                <td>{{ Permission.Name }}</td>
+                                <td>{{ Permission.Description }}</td>
+                                <td><input type="checkbox" ng-model="Permission.IsGranted"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </tab>
+            </tabset>
+
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="item.Accept(Accept)">Save Changes</button>
+</div>
+
+

@@ -1,0 +1,57 @@
+﻿
+<section>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search Criteria</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row form-group">
+                <div class="col-sm-6 col-lg-3"><strong>Golf Course Name Or Id</strong></div>
+                <div class="col-sm-6 col-lg-3">
+                    <input type="text" class="form-control" ng-model="Criteria.GolfCourseNameOrId" /></div>
+                <div class="col-sm-6 col-lg-3"></div>
+                <div class="col-sm-6 col-lg-3">
+                </div>
+            </div>
+            <button class="btn btn-primary" ng-click="searchCourses()">Search</button>
+            </div>
+        </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3"><i class="fa fa-list fa-5x"></i></div>
+                <div class="col-xs-9 text-right">
+                    <div>
+                        <div class="huge">{{ courses.length }}</div>
+                        <div ng-hide="!(courses.length >= 0)">courses(s) returned!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+
+            <div ng-hide="courses.length">Nothing to show.</div>
+
+            <table ng-hide="!courses.length" class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Trade Course</th>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="course in courses">
+                        <td>{{ course.GolfCourseId }}</td>
+                        <td>{{ course.Name }}</td>
+                        <td>{{ course.IsTradeCourse }}</td>
+                        <td><button ng-click="$parent.goTo(course.GolfCourseId)"><i class="fa fa-arrow-circle-right"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>

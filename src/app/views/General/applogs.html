@@ -1,0 +1,81 @@
+﻿
+
+
+<section>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search Criteria</h3>
+        </div>
+        <div class="panel-body">
+            <div class="alert alert-info">
+                <strong>Your Query</strong><br>
+                <span ng-bind-html="output"></span>
+            </div>
+            <query-builder group="filter.group" fields="fields" conditions="conditions" operators="operators"></query-builder>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <strong>Days Back</strong>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <select ng-options="str for str in days" ng-model="daysBack" class="form-control"></select>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <strong>Max Returned Logs</strong>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <select ng-options="str for str in returns" ng-model="maxReturned" class="form-control"></select>
+                </div>
+                <div class="col-sm-12">
+                    <button class="btn btn-primary" ng-click="searchAppLogs()">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3"><i class="fa fa-list fa-5x"></i></div>
+                <div class="col-xs-9 text-right">
+                    <div>
+                        <div class="huge">{{ logs.length }}</div>
+                        <div ng-hide="!(logs.length >= 0)">log(s) returned!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+
+            <div ng-hide="logs.length">Nothing to show.</div>
+
+            <table ng-hide="!logs.length" class="table table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Application</th>
+                    <th>Machine</th>
+                    <th>Message</th>
+                    <th>Created On</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="log in logs">
+                    <td>{{ log.Id }}</td>
+                    <td>{{ log.Application }}</td>
+                    <td>{{ log.Instance }}</td>
+                    <td>{{ log.Message }}</td>
+                    <td>{{ log.CreatedDate.toUTCString() }}</td>
+                    <td><button class="btn btn-primary" ng-click="viewDetail(log)">View</button></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <button class="btn btn-primary" ng-click="continueSearchAppLogs()" ng-show="logs.length > 0">More<i class="fa fa-arrow-down"></i></button>
+
+        </div>
+    </div>
+
+</section>

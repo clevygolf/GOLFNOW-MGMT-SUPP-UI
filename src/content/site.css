@@ -1,0 +1,25 @@
+﻿.angular-google-map-container { height : 100%; width : 100%; top : 0; left : 0; position : absolute;  }
+
+/*.form-control {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}*/
+
+html {
+}
+
+body {
+    background: url(../img/bg-login.jpg);
+}
+
+.footer {
+}
+
+.container {
+}
+
+.default-container {
+}
+
+.scrollable-menu {
+}

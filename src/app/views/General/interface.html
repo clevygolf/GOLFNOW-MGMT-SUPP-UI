@@ -1,0 +1,79 @@
+﻿
+<section>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search Criteria</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <strong>Date</strong>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup="{{InterfaceErrorViewModel.format}}" ng-model="date" is-open="InterfaceErrorViewModel.opened" datepicker-options="InterfaceErrorViewModel.dateOptions" date-disabled="InterfaceErrorViewModel.disabled(date, mode)" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary" ng-click="InterfaceErrorViewModel.open($event)"><i class="fa fa-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+                <div class="col-sm-12">
+                    <button class="btn btn-primary" ng-disabled="date == null" ng-click="getInterfaceErrorsByDays()">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-12"><i class="fa fa-list fa-5x"></i>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+
+            <div ng-show="metric.source == null">Nothing to show.</div>
+
+            <canvas ng-hide="metric.source == null" id="line" class="chart chart-line center-block" chart-data="metric.data" chart-labels="metric.labels"
+                    chart-legend="true" chart-series="metric.series" chart-click="onClick"></canvas>
+
+        </div>
+    </div>
+
+    <!-- Selected Summary -->
+    <div class="panel panel-primary"  ng-hide="metric.selectedSummary == null">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-12">{{metric.selectedSummary.Label}}</div>
+            </div>
+        </div>
+        <div class="panel-body">
+
+            <div>
+                <select ng-options="str.Name for str in metric.selectedSummary.Items" ng-model="metric.selectedItem" class="input-large form-control pull-right"></select>
+
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>Message</th>
+                            <th>Stack Trace</th>
+                            <th>Frequency</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="detail in metric.selectedItem.Details">
+                            <td>{{ detail.Name }}</td>
+                            <td>{{ detail.StackTrace | limitTo: 100 }}</td>
+                            <td>{{ detail.Frequency }}</td>
+                            <td><button class="btn btn-primary" ng-click="viewDetail(detail)">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>

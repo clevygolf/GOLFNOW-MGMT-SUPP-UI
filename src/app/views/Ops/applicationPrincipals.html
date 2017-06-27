@@ -1,0 +1,41 @@
+﻿
+<section>
+
+    
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3"><i class="fa fa-list fa-5x"></i></div>
+                <div class="col-xs-9 text-right">
+                    <div>
+                        <div class="huge">{{ principals.length }}</div>
+                        <div ng-hide="!(principals.length >= 0)">principal(s) returned!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <button class="btn btn-success pull-left" ng-show="security.CanViewApplicationPrincipals" ng-click="getApplicationPrincipals()"><i class="fa fa-recycle"></i>Refresh Principals</button>
+            <button class="btn btn-success pull-right" ng-show="security.CanCreateApplicationPrincipal" ng-click="createPrincipal()"><i class="fa fa-plus"></i>Add Principal</button>
+
+            <table ng-hide="!principals.length" class="table table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Application Name</th>
+                    <th>Login Name</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="principal in principals">
+                    <td>{{ principal.ApplicationName }}</td>
+                    <td>{{ principal.LoginName }}</td>
+                    <td><button class="btn btn-success" ng-click="$parent.viewPrincipal(principal)"><i class="fa fa-edit"></i></button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,88 @@
+﻿<section>
+    
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search Criteria</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-6 col-lg-3">
+                <strong>
+                    Affiliate Name
+                </strong>
+
+                <input type="text" ng-model="AffiliateName"/>
+            </div>            
+
+            <button class="btn btn-primary" ng-click="searchEndPoints()">Search</button>
+        </div>
+    </div>
+
+     <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">End Point Entry</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-6 col-lg-3">
+                <strong>
+                    Affiliate Name
+                </strong>
+
+                <input type="text" ng-model="AffiliateName"/>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <strong>
+                    Starting Point
+                </strong>
+
+                <input type="text" ng-model="StartingPoint"/>
+            </div>
+            
+
+            <div class="col-sm-6 col-lg-3">
+                <strong>
+                    Ending Point
+                </strong>
+
+                <input type="text" ng-model="EndingPoint"/>
+            </div>            
+
+            <button class="btn btn-primary" ng-click="addEndPoints()">Add End Point</button>
+        </div>
+    </div>
+    
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-3"><i class="fa fa-list fa-5x"></i></div>
+                    <div class="col-xs-9 text-right">
+                        <div>
+                            <div class="huge">{{ endPoints.length }}</div>
+                            <div ng-hide="!(endPoints.length >= 0)">end point(s) returned!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+
+            <div ng-hide="endPoints.length">Nothing to show.</div>
+
+            <table ng-hide="!endPoints.length" class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Starting Address</th>
+                        <th>Ending Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="endPoint in endPoints">
+                        <td>{{ endPoint.StartingAddress }}</td>
+                        <td>{{ endPoint.EndingAddress }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> 
+</section>

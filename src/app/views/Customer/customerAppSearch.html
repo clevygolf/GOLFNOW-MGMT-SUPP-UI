@@ -1,0 +1,94 @@
+﻿
+<div id="appSearchTab">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Search Criteria</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-6 col-lg-3">
+                    <strong>
+                        Customer Email Address
+                    </strong>
+
+                    <input type="text" ng-model="CustomerEmail"/>
+                </div>            
+
+                <button class="btn btn-primary" ng-click="searchCustomerByEmail()">App Subscription Search</button>
+            </div>
+        </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-9 text-left">
+                        <div>
+                            Customer Information
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+
+            <div ng-hide="customerInfo.EmailAddress">Nothing to show.</div>
+
+            <table ng-hide="!customerInfo.EmailAddress" class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Country</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ customerInfo.FullName }}</td>
+                        <td>{{ customerInfo.Address }}</td>
+                        <td>{{ customerInfo.City }}</td>
+                        <td>{{ customerInfo.State }}</td>
+                        <td>{{ customerInfo.Country }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-9 text-left">
+                        <div>
+                            Mobile App Subscription Information
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+
+            <div ng-hide="customerInfo.EmailAddress">Nothing to show.</div>
+
+            <table ng-hide="!customerInfo.EmailAddress" class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Email Address</th>
+                        <th>Purchase Reference ID</th>
+                        <th>Subscription Purchase Date</th>
+                        <th>Subscription Expiration Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ customerInfo.EmailAddress }}</td>
+                        <td>{{ customerInfo.PurchaseReferenceID }}</td>
+                        <td>{{ customerInfo.SubscriptionPurchaseDate }}</td>
+                        <td>{{ customerInfo.SubscriptionExpirationDate }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

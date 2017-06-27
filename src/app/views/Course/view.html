@@ -1,0 +1,96 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Course Information</h3>
+    </div>
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-sm-6 col-lg-3"><strong>Course Id</strong></div>
+            <div class="col-sm-6 col-lg-3">{{GolfCourse.GolfCourseId}}</div>
+            <div class="col-sm-6 col-lg-3"><strong>Course Name</strong></div>
+            <div class="col-sm-6 col-lg-3">{{GolfCourse.Name}}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-lg-3"><strong>Trade Course?</strong></div>
+            <div class="col-sm-6 col-lg-3">{{ GolfCourse.IsTradeCourse }}</div>
+            <div class="col-sm-6 col-lg-3"><strong>Active?</strong></div>
+            <div class="col-sm-6 col-lg-3">{{GolfCourse.IsActive}}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-lg-3"><strong>Address</strong></div>
+            <div class="col-sm-6 col-lg-3">{{ GolfCourse.Address }}</div>
+            <div class="col-sm-6 col-lg-3"></div>
+            <div class="col-sm-6 col-lg-3"></div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <tabset justified="true">
+    <tab heading="Direct Golf Courses">
+        <br />
+        <div class="alert alert-warning">The following golf courses are associated with this golf Course via the course's golf Course id</div>
+        <div class="panel panel-default">
+    <div class="panel-body">
+            <div ng-hide="CourseRateSets.length">Nothing to show.</div>
+
+            <table ng-hide="!CourseRateSets.length" class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Interface Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="course in CourseRateSets">
+                        <td>{{ course.RateSetId }}</td>
+                        <td>{{ course.Name }}</td>
+                        <td>{{ course.InterfaceType }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+            </div>
+    </tab>
+    <tab heading="All Golf Courses">
+        <br />
+        <div class="alert alert-warning">The following golf courses are associated with this golf Course via the course's play Course id</div>
+        <div class="row" >
+                <div class="col-sm-12 col-lg-12">
+                    <button ng-disabled="!HasWebMarketRateSets || AllRateSets.length == 0" class="btn btn-warning pull-right" ng-click="refreshWebMarketInventory()"><i class="fa fa-refresh"></i>Refresh WM</button>
+                </div>
+            </div>
+
+        <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div ng-hide="AllRateSets.length">Nothing to show.</div>
+
+            <table ng-hide="!AllRateSets.length" class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Interface Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="course in AllRateSets">
+                        <td>{{ course.RateSetId }}</td>
+                        <td>{{ course.Name }}</td>
+                        <td>{{ course.InterfaceType }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </tab>
+  </tabset>
+    </div>
+</div>

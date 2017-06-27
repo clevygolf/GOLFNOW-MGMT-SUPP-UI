@@ -1,0 +1,58 @@
+﻿<section>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search Criteria</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-6 col-lg-3">
+                <strong>
+                    Customer Email Address
+                </strong>
+
+                <input type="text" ng-model="CustomerEmail"/>
+            </div>            
+
+            <button class="btn btn-primary" ng-click="searchCustomerCorrespondence()">Email Exchange Search</button>
+        </div>
+    </div>    
+    
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-9 text-left">
+                        <div>
+                            Customer Email Exchange
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="panel-body">
+
+            <div ng-hide="customerCorrespondence.length">Nothing to show.</div>
+
+            <table ng-hide="!customerCorrespondence.length" class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>To Email</th>
+                        <th>Email Type</th>
+                        <th>Description</th>
+                        <th>Timestamp</th>
+                        <th>Service</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="correspondence in customerCorrespondence">
+                        <td>{{ correspondence.emailAddress }}</td>
+                        <td>{{ correspondence.emailType }}</td>
+                        <td>{{ correspondence.description }}</td>
+                        <td>{{ correspondence.timeStamp }}</td>
+                        <td>{{ correspondence.service }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
